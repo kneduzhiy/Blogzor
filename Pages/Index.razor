@@ -1,0 +1,26 @@
+﻿@page "/"
+
+<h4>@BlogPostService.Config.Title</h4>
+<h5>@BlogPostService.Config.Description</h5>
+
+<br/>
+
+@foreach(var post in Posts)
+{
+    <div class="post card mb-4">
+        <div class="card-header">
+            <h4>@post.Title</h4>
+            @if (!string.IsNullOrEmpty(post.Description))
+            {
+            <span>@post.Description</span>
+            }
+        </div>
+        <div class="card-body">
+            @post.Content.AsHtml()
+            <br/>
+            <div class="mt-4" style="float:right">
+                <span style="font-style: italic">written by <strong>@post.Author</strong> - @post.PublishedOn.ToString("dd.MM.yyy HH:mm")</span>
+            </div>
+        </div>
+    </div>
+}
